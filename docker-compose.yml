@@ -1,0 +1,21 @@
+version: "3.9"
+
+services:
+  mongo:
+    image: mongo:6
+    container_name: mongo_container
+    ports:
+      - "27018:27017"
+    environment:
+      MONGO_INITDB_DATABASE: testdb
+
+  springboot:
+    build: ./SpringBootMongojpa
+    container_name: springboot_container
+    depends_on:
+      - mongo
+    environment:
+      SPRING_DATA_MONGODB_URI: mongodb://mongo:27017/testdb
+    ports:
+      - "80:8080"
+
