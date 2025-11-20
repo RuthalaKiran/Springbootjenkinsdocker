@@ -14,6 +14,11 @@ public class EmployeeController {
     @Autowired
     EmployeeService employeeService;
 
+    @GetMapping(value = "hello")
+    public String sayHello(){
+        return "docker docker yes papa, eating ram not papa, oopen your mouth RAMMMMMM";
+    }
+
     @PostMapping(value = "store",consumes = MediaType.APPLICATION_JSON_VALUE)
     public String storeEmployee(@RequestBody Employee employee){
         return employeeService.storeEmployee(employee);
